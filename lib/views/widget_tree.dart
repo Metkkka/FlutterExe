@@ -28,10 +28,8 @@ class WidgetTree extends StatelessWidget {
                           valueListenable: isLightNotifier,
                           builder: (context, isLight, child) {
                             if(isLight) {
-                              print(true);
                               return Icon(Icons.dark_mode);
                             } else {
-                              print(false);
                               return Icon(Icons.light_mode);
                             }
                           }
