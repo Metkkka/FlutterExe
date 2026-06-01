@@ -9,6 +9,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  bool? isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -36,6 +38,19 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   );
                 }
+            ),
+            CheckboxListTile(
+                title: Text("New User?"),
+                // tristate: true, //Used when there are 3 values for the checkbox(true, false, null)
+                value: isChecked,
+                activeColor: Colors.red,
+                checkColor: Colors.black,
+                controlAffinity: ListTileControlAffinity.leading,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isChecked = value;
+                  });
+                },
             )
           ],
         ),
