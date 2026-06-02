@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:metkaexeflutter/data/notifiers.dart';
+import 'package:metkaexeflutter/pages/welcome_page.dart';
 import 'package:metkaexeflutter/views/widget_tree.dart';
 //
 // void main() {
