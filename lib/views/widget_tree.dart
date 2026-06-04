@@ -50,7 +50,7 @@ class WidgetTree extends StatelessWidget {
                   )
                 ],
               ),
-              body: WelcomePage(),
+              body: pages[selectedPage],
               bottomNavigationBar: NavbarWidget()
           );
         }

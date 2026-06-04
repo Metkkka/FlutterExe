@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metkaexeflutter/pages/welcome_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -132,7 +133,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 side: BorderSide(
                     color: Colors.grey
                 )
-            ),
+            )
           )
         ],
       ),

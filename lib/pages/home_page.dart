@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:metkaexeflutter/data/constants.dart';
 import 'package:metkaexeflutter/data/notifiers.dart';
 import 'package:metkaexeflutter/widget/hero_widget.dart';
 
-String _decoration(int numberValue) {
-  if (numberValue == 0) {
-    return "Zero";
-  } else if (numberValue > 0) {
-    return "Positive";
-  } else {
-    return "Negative";
-  }
-}
+
 
 class HomePage extends StatefulWidget {
   const HomePage(
@@ -33,7 +26,28 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Card(
+                  child: Padding(
+                      padding: EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                          Text(
+                              "Basic Card that we are testing for FittedBox",
+                              style: kTextStyle.titleTealTextStyle
+                          ),
+                        Text(
+                            "Description of the basic Card",
+                            style: kTextStyle.descriptionTealTextStyle,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         );

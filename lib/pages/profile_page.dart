@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_adaptive_buttons/flutter_adaptive_buttons.dart';
 import 'package:metkaexeflutter/data/notifiers.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -113,19 +114,51 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                print("Clicked");
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                        duration: Duration(seconds: 5),
+                        content: Text("SnackBar"),
+                        behavior: SnackBarBehavior.floating,
+                    )
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
                 foregroundColor: Colors.black,
               ),
-              child: Icon(Icons.add),
+              child: Text("Show snackbar"),
+            ),
+            Divider(
+              color: Colors.teal,
+              thickness: 2,
             ),
             FilledButton(
               onPressed: () {
-                print("Clicked");
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog.adaptive(
+                        title: Text("Alert Title"),
+                        content: Text("Alert Test"),
+                        actions: [
+                          AdaptiveElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child:
+                              Text(
+                                  "Close",
+                                  style: TextStyle(
+                                  color: Colors.white
+                              ),
+                              )
+                          )
+                        ],
+                      );
+                    }
+                );
               },
-              child: Icon(Icons.add),
+              child: Text("Alert Test")
             ),
             TextButton(
               onPressed: () {

@@ -250,7 +250,7 @@ class Brink extends StatelessWidget {
               theme: ThemeData(
                 brightness: isLightMode ? Brightness.dark : Brightness.light
               ),
-              home: WidgetTree(),
+              home: WelcomePage(),
           );
         }
     );
