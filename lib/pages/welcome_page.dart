@@ -16,7 +16,7 @@ class WelcomePage extends StatelessWidget {
             HeroWidget(title: "Welcome"),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(context,
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context) {
                         return LoginPage();
                       }

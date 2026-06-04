@@ -133,7 +133,14 @@ class _SettingsPageState extends State<SettingsPage> {
                 side: BorderSide(
                     color: Colors.grey
                 )
-            )
+            ),
+            onTap: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) {
+                return WelcomePage();
+              })
+              );
+            },
           )
         ],
       ),

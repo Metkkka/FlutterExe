@@ -14,6 +14,9 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  String email = "123";
+  String password = "456";
+
   @override
   void initState() { 
     //WHEN STARTING THE PAGE
@@ -77,14 +80,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             FilledButton(
                 onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) {
-                              return WidgetTree();
-                            }
-                        )
-                    );
+                    onLoginPressed();
                 },
                 child: Text("Log In")
             )
@@ -92,5 +88,20 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void onLoginPressed() {
+    if(email == emailController.text && password == passwordController.text) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) {
+                return WidgetTree();
+              }
+          )
+      );
+    } else {
+
+    }
   }
 }

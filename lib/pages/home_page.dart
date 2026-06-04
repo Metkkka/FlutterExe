@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:metkaexeflutter/data/constants.dart';
 import 'package:metkaexeflutter/data/notifiers.dart';
-import 'package:metkaexeflutter/widget/hero_widget.dart';
-
-
 
 class HomePage extends StatefulWidget {
   const HomePage(
