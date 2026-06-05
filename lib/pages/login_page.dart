@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:metkaexeflutter/views/widget_tree.dart';
 import 'package:metkaexeflutter/widget/hero_widget.dart';
 
@@ -11,6 +14,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+  var log = Logger();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -21,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() { 
     //WHEN STARTING THE PAGE
     //RUNS BEFORE BUILD
-    print('init state');
+    log.e('init state');
     super.initState();
   }
 
@@ -37,54 +42,57 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            HeroWidget(title : "Log In"),
-            SizedBox(height: 50),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(
-                hint: Text("Email"),
-                  border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-              )),
-              onChanged: (value) {
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                HeroWidget(title : "Log In"),
+                SizedBox(height: 50),
+                TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    hint: Text("Email"),
+                      border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                  )),
+                  onChanged: (value) {
 
-              },
-              onEditingComplete: () {
-                setState(() {
+                  },
+                  onEditingComplete: () {
+                    setState(() {
 
-                });
-              },
+                    });
+                  },
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                      hint: Text("Password"),
+                      border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15)
+                  )),
+                  onChanged: (value) {
+
+                  },
+                  onEditingComplete: () {
+                    setState(() {
+
+                    });
+                  },
+                ),
+                FilledButton(
+                    onPressed: () {
+                        onLoginPressed();
+                    },
+                    child: Text("Log In")
+                )
+              ],
             ),
-            SizedBox(height: 10),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(
-                  hint: Text("Password"),
-                  border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15)
-              )),
-              onChanged: (value) {
-
-              },
-              onEditingComplete: () {
-                setState(() {
-
-                });
-              },
-            ),
-            FilledButton(
-                onPressed: () {
-                    onLoginPressed();
-                },
-                child: Text("Log In")
-            )
-          ],
+          ),
         ),
       ),
     );
@@ -92,13 +100,14 @@ class _LoginPageState extends State<LoginPage> {
 
   void onLoginPressed() {
     if(email == emailController.text && password == passwordController.text) {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
               builder: (context) {
                 return WidgetTree();
               }
-          )
+          ),
+          (route) => false
       );
     } else {
 

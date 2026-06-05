@@ -3,7 +3,6 @@ import 'package:metkaexeflutter/data/notifiers.dart';
 import 'package:metkaexeflutter/pages/home_page.dart';
 import 'package:metkaexeflutter/pages/profile_page.dart';
 import 'package:metkaexeflutter/pages/settings_page.dart';
-import 'package:metkaexeflutter/pages/welcome_page.dart';
 
 import '../widget/navbar_widget.dart';
 

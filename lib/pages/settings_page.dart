@@ -135,10 +135,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 )
             ),
             onTap: () {
-              Navigator.pushReplacement(
+              Navigator.pushAndRemoveUntil(
                   context, MaterialPageRoute(builder: (context) {
                 return WelcomePage();
-              })
+              }
+              ),
+                      (route) => false
               );
             },
           )
