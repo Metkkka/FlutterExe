@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:metkaexeflutter/data/constants.dart';
-import 'package:metkaexeflutter/data/notifiers.dart';
+import 'package:metkaexeflutter/pages/welcome_page.dart';
+import 'package:metkaexeflutter/widget/container_widget.dart';
+import 'package:metkaexeflutter/widget/hero_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage(
-      {super.key, required this.name}
-      );
+  const HomePage({super.key, required this.name});
 
   final String name;
 
@@ -16,40 +16,30 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: numberSelectedNotifier,
-      builder: (context, numberSelected, child) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Card(
-                  child: Padding(
-                      padding: EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                          Text(
-                              "Basic Card that we are testing for FittedBox",
-                              style: kTextStyle.titleTealTextStyle
-                          ),
-                        Text(
-                            "Description of the basic Card",
-                            style: kTextStyle.descriptionTealTextStyle,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
-      },
+    List<String> list = [
+      KValue.basicLayout,
+      KValue.fixBug,
+      KValue.cleanUI,
+      KValue.keyConcepts
+    ];
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            HeroWidget(title: "Hello", nextPage: WelcomePage()),
+            Column(
+              children: List.generate(list.length, (index) {
+                return ContainerWidget(
+                  title: list.elementAt(index),
+                  description: "The description of the dashboard",
+                );
+              }),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
-
