@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:metkaexeflutter/data/constants.dart';
 import 'package:metkaexeflutter/data/notifiers.dart';
 import 'package:metkaexeflutter/pages/welcome_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //
 // void main() {
 //   runApp(const MyApp());
@@ -233,8 +235,26 @@ void main() {
 
 String title = 'Brink | POS';
 
-class Brink extends StatelessWidget {
+class Brink extends StatefulWidget {
   const Brink({super.key});
+
+  @override
+  State<Brink> createState() => _BrinkState();
+}
+
+class _BrinkState extends State<Brink> {
+
+  @override
+  void initState() {
+    initThemeMode();
+    super.initState();
+  }
+
+  void initThemeMode() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final bool? lightKey = prefs.getBool(KConstant.lightKey);
+    isLightNotifier.value = lightKey ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {

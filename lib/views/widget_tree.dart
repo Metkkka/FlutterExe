@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:metkaexeflutter/data/constants.dart';
 import 'package:metkaexeflutter/data/notifiers.dart';
 import 'package:metkaexeflutter/pages/home_page.dart';
 import 'package:metkaexeflutter/pages/profile_page.dart';
 import 'package:metkaexeflutter/pages/settings_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widget/navbar_widget.dart';
 
@@ -23,8 +25,10 @@ class WidgetTree extends StatelessWidget {
                 foregroundColor: Colors.white,
                 actions: [
                   IconButton(
-                      onPressed: () {
+                      onPressed: () async {
                         isLightNotifier.value = !isLightNotifier.value;
+                        final SharedPreferences prefs = await SharedPreferences.getInstance();
+                        await prefs.setBool(KConstant.lightKey, isLightNotifier.value);
                       },
                       icon: ValueListenableBuilder(
                           valueListenable: isLightNotifier,
