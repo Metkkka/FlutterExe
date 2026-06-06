@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:metkaexeflutter/pages/get_started_page.dart';
 import 'package:metkaexeflutter/pages/login_page.dart';
-import 'package:metkaexeflutter/widget/hero_widget.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -13,7 +14,22 @@ class WelcomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                HeroWidget(title: "Welcome"),
+                Lottie.asset("assets/lottie/welcome.json"),
+                SizedBox(height: 100),
+                FilledButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return GetStartedPage();
+                          }
+                          )
+                      );
+                    },
+                    style: FilledButton.styleFrom(
+                      minimumSize: Size(double.infinity - 30, 40)
+                    ),
+                    child: Text("Get Started")
+                ),
                 ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:lottie/lottie.dart';
 import 'package:metkaexeflutter/views/widget_tree.dart';
 import 'package:metkaexeflutter/widget/hero_widget.dart';
 
@@ -26,7 +27,6 @@ class _LoginPageState extends State<LoginPage> {
   void initState() { 
     //WHEN STARTING THE PAGE
     //RUNS BEFORE BUILD
-    log.e('init state');
     super.initState();
   }
 
@@ -49,8 +49,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                HeroWidget(title : "Log In"),
-                SizedBox(height: 50),
+                Lottie.asset('assets/lottie/home.json', height: 400),
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(
