@@ -34,7 +34,9 @@ class _SettingsPageState extends State<SettingsPage> {
           ListTile(
             title: Text("Profile"),
             subtitle: Text("Edit your name and photo"),
-            leading : Icon(Icons.person),
+            leading: CircleAvatar(
+              child: Icon(Icons.person)
+            ),
             trailing: Icon(Icons.arrow_forward_ios_outlined),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadiusGeometry.circular(10),

@@ -28,7 +28,9 @@ class _HomePageState extends State<HomePage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 10),
             HeroWidget(title: "Hello", nextPage: WelcomePage()),
+            SizedBox(height: 10),
             Column(
               children: List.generate(list.length, (index) {
                 return ContainerWidget(
