@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_adaptive_buttons/flutter_adaptive_buttons.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
-import 'package:metkaexeflutter/data/notifiers.dart';
+import 'package:metkaexeflutter/widget/hero_widget.dart';
 import 'dart:convert';
 
 import '../domain/bored_api.dart';
@@ -193,7 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
   }
 
-  void getData() async {
+  Future getData() async {
 
     var url = Uri.https('bored-api.appbrewery.com', '/random');
 
@@ -203,17 +201,46 @@ class _ProfilePageState extends State<ProfilePage> {
     if(statusCode == 200) {
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
       var boredApi = BoredApi.fromJson(jsonResponse);
+
       print(boredApi.activity);
+
+      return boredApi;
     } else {
       print("Fetch failed with status code: $statusCode");
     }
 
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      body: FutureBuilder(
+          future: getData(),
+          builder: (context, snapshot) {
+             if(snapshot.connectionState == ConnectionState.waiting) { //LOADING
+               return CircularProgressIndicator();
+             }
+            if(snapshot.hasData) {
+              BoredApi boredApi = snapshot.data;
+              return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        HeroWidget(title: 'Profile'),
+                        Text(boredApi.activity),
+                        Text(boredApi.type)
+                      ],
+                    ),
+                  ),
+              );
+            } else {
+              return Center(child: Text("Error"),);
+            }
+          }
+      ),
     );
   }
 }
