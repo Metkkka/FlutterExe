@@ -22,9 +22,12 @@ class HeroWidget extends StatelessWidget {
         children: [
           Hero(
             tag: 'hero1',
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20.5),
-              child: Image.asset("assets/mac-img.jpg"),
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.5),
+                child: Image.asset("assets/mac-img.jpg", fit: BoxFit.cover,),
+              ),
             ),
           ),
           FittedBox(

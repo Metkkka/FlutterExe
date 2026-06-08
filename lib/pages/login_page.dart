@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:lottie/lottie.dart';
 import 'package:metkaexeflutter/views/widget_tree.dart';
-import 'package:metkaexeflutter/widget/hero_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -40,6 +37,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
+    double heightScreen = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
       ),
@@ -47,50 +46,57 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                Lottie.asset('assets/lottie/home.json', height: 400),
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    hint: Text("Email"),
-                      border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                  )),
-                  onChanged: (value) {
+            child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return FractionallySizedBox(
+                    widthFactor: widthScreen > 500 ? 0.5 : 1.0,
+                    child: Column(
+                      children: [
+                        Lottie.asset('assets/lottie/home.json', height: 400),
+                        TextField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                              hint: Text("Email"),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              )),
+                          onChanged: (value) {
 
-                  },
-                  onEditingComplete: () {
-                    setState(() {
+                          },
+                          onEditingComplete: () {
+                            setState(() {
 
-                    });
-                  },
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                      hint: Text("Password"),
-                      border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)
-                  )),
-                  onChanged: (value) {
+                            });
+                          },
+                        ),
+                        SizedBox(height: 10),
+                        TextField(
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                              hint: Text("Password"),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15)
+                              )),
+                          onChanged: (value) {
 
-                  },
-                  onEditingComplete: () {
-                    setState(() {
+                          },
+                          onEditingComplete: () {
+                            setState(() {
 
-                    });
-                  },
-                ),
-                FilledButton(
-                    onPressed: () {
-                        onLoginPressed();
-                    },
-                    child: Text("Log In")
-                )
-              ],
-            ),
+                            });
+                          },
+                        ),
+                        FilledButton(
+                            onPressed: () {
+                              onLoginPressed();
+                            },
+                            child: Text("Log In")
+                        )
+                      ],
+                    ),
+                  );
+                }
+            )
           ),
         ),
       ),
